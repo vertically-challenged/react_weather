@@ -1,5 +1,6 @@
 import React from 'react'
 import Input from '../_common/Input/Input'
+import './City.scss'
 
 const City = ({city, setCity, onSubmitCityHandler}) => {
   const inputOnChangeHandler = (setCity) => {

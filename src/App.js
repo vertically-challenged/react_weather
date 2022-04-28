@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { API } from './API/API'
 import './App.scss'
 import City from './modules/City/City'
+import CurrentWeather from './modules/CurrentWeather/CurrentWeather'
 
 const api = new API()
 
@@ -9,15 +10,30 @@ function App() {
   const [city, setCity] = useState('Москва')
   const [country, setCountry] = useState('RU')
   const [geocode, setGeocode] = useState(null)
+  const [weatherData, setWeatherData] = useState(null)
+
+  const setData = () => {
+    api.getGeocode(city, country)
+    .then((geocode) => {
+      setGeocode(geocode)
+      return geocode
+    })
+    .then((geocode) => {
+      api.getWeatherData(geocode)
+      .then((weatherData) => {
+        setWeatherData(() => weatherData.data)
+      })  
+    })
+  } 
 
   useEffect(() => {
-    api.getGeocode(city, country).then((geocode) => setGeocode(geocode[0]))
+    setData()
   }, [])
 
-  const onSubmitCityHandler = (setGeocode, city, country) => {
+  const onSubmitCityHandler = () => {
     return (event) => {
       event.preventDefault()
-      api.getGeocode(city, country).then((geocode) => setGeocode(geocode[0]))
+      setData()
     }
   }
 
@@ -30,6 +46,9 @@ function App() {
           setCity={setCity} 
           onSubmitCityHandler={onSubmitCityHandler(setGeocode, city, country)}
         />
+        <div className="main-bloc">
+          {weatherData && <CurrentWeather currentWeather={weatherData.current}/>}
+        </div>
       </div>
     </div>
   )
