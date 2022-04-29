@@ -45,7 +45,7 @@ function App() {
           onSubmitCityHandler={onSubmitCityHandler(setGeocode, city, country)}
         />
 
-        <Time time={weatherData?.current.dt} />
+        {weatherData && <Time time={weatherData.current.dt} />}
 
         <div className="main-bloc">
           {weatherData && <CurrentWeather geocode={geocode} currentWeather={weatherData.current} />}
