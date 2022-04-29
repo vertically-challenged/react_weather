@@ -10,21 +10,20 @@ const monthList = {
   8: 'Сентября',
   9: 'Октября',
   10: 'Ноября',
-  11: 'Декабря'
+  11: 'Декабря',
 }
 
-export function DateFormatting (dt) {
-  const date = new Date(dt*1000)
+export function DateFormatting(dt) {
+  const date = new Date(dt * 1000)
   const Hours = (date.getHours() < 10) ? `0${date.getHours()}` : `${date.getHours()}`
   const Minutes = (date.getMinutes() < 10) ? `0${date.getMinutes()}` : `${date.getMinutes()}`
-  return Hours + ':' + Minutes
+  return `${Hours}:${Minutes}`
 }
 
-export function DateFormattingFullDate (dt) {
-  const date = new Date(dt*1000)
-  console.log(date)
+export function DateFormattingFullDate(dt) {
+  const date = new Date(dt * 1000)
   return {
     day: date.getDate(),
-    mouth: monthList[date.getMonth()]
+    mouth: monthList[date.getMonth()],
   }
 }

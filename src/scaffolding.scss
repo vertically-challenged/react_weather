@@ -1,11 +1,12 @@
 @import './variables.scss';
 
 * {
-  font-style: $main-font;
+  font-family: $main-font;
 }
 
 body {
   padding: 0;
+  margin: 0;
 }
 
 .container {

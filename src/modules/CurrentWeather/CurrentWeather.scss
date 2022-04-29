@@ -1,3 +1,53 @@
+@import '../../variables.scss';
+
 .current-weather {
-  border: solid 2px red;
+  margin-top: 10px;
+  background-color: $color-2;
+  border-radius: 20px;
+  padding: 10px;
+
+  &__first-line {
+    display: flex;
+  }
+
+  &__sub-info {
+    display: flex;
+  }
+
+  &__main-info {
+    display: flex;
+
+    & > * {
+      margin: 5px;
+    }
+  }
+
+  &__temp {
+    font-size: $font-size-temp;
+    
+    &::after {
+      content: '°'
+    }
+  }
+
+  &__feels_like {
+    &::after {
+      content: '°'
+    }
+  }
+
+  &__description {
+    margin-top: 5px;
+    & > * {
+      margin: 5px;
+    }
+  }
+
+  &__sub-info {
+    display: flex;
+    justify-content: space-between;
+    & > * {
+      margin: 5px;
+    }
+  }
 }
