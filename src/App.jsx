@@ -4,7 +4,6 @@ import './App.scss'
 import City from './modules/City/City'
 import Time from './modules/Time/Time'
 import CurrentWeather from './modules/CurrentWeather/CurrentWeather'
-import { DateFormatting } from './Services/FormattingDataServices/DateFormatting'
 
 function App() {
   const [city, setCity] = useState('Москва')

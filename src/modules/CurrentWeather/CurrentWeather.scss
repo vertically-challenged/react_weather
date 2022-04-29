@@ -3,8 +3,12 @@
 .current-weather {
   margin-top: 10px;
   background-color: $color-2;
-  border-radius: 20px;
-  padding: 10px;
+  padding: 10px 0;
+
+  @media (min-width: $phone) {
+    border-radius: 20px;
+    padding: 10px;
+  }
 
   &__first-line {
     display: flex;
@@ -12,6 +16,15 @@
 
   &__sub-info {
     display: flex;
+
+    img {
+      padding-right: 5px;
+    }
+
+    * {
+      display: flex;
+      align-items: center;
+    }
   }
 
   &__main-info {
