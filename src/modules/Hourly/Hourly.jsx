@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { DateFormattingFullDate, DateFormatting } from '../../Services/FormattingDataServices/DateFormatting'
 import iconsList from '../../icons/icons'
-import CapitalLetter from '../../Services/FormattingDataServices/CapitalLetter'
 import AddPlusIfNeeded from '../../Services/FormattingDataServices/AddPlusIfNeeded'
 import './Hourly.scss'
 import Button from './Button/Button'
@@ -53,6 +52,8 @@ const dataPreparation = (
 }
 
 function Hourly(hourlyProps) {
+  const hourlyRef = useRef(null)
+
   const {
     currentTime,
     dailyWeather,
@@ -71,18 +72,28 @@ function Hourly(hourlyProps) {
       currentTime,
       dailyWeather,
     ))
-  }, [currentTime])
+  }, [currentTime, hourlyRef])
 
-  console.log(data)
+  const scrollDirections = {
+    left: -3,
+    right: 3,
+  }
+
+  /* eslint-disable no-param-reassign */
+  const onScroll = (ref, direction) => {
+    ref.current.scrollLeft += direction
+  }
+  /* eslint-enable no-param-reassign */
 
   return (
     <div className="hourly-list__wrapper">
-      <Button direction="left" />
-      <ul className="hourly-list">
+      <Button direction="left" onScroll={() => onScroll(hourlyRef, scrollDirections.left)} />
+      <ul className="hourly-list" ref={hourlyRef}>
         {data.map((item) => {
           if (item.type === 'separator') {
             return (
               <Separator
+                key={`${item.day + item.mouth}Separator`}
                 day={item.day}
                 mouth={item.mouth}
               />
@@ -92,6 +103,7 @@ function Hourly(hourlyProps) {
           if (item.event) {
             return (
               <SunTime
+                key={`${item.day + item.mouth + item.event}SunTime`}
                 event={item.event}
                 time={item.time}
                 day={item.day}
@@ -101,6 +113,7 @@ function Hourly(hourlyProps) {
           }
           return (
             <Weather
+              key={item.dt}
               dt={DateFormatting(item.dt)}
               icon={iconsList.weather[item.weather[0].icon]}
               temp={AddPlusIfNeeded(Math.round(item.temp))}
@@ -108,7 +121,7 @@ function Hourly(hourlyProps) {
           )
         })}
       </ul>
-      <Button direction="right" />
+      <Button direction="right" onScroll={() => onScroll(hourlyRef, scrollDirections.right)} />
     </div>
   )
 }
