@@ -5,6 +5,7 @@ import City from './modules/City/City'
 import Time from './modules/Time/Time'
 import CurrentWeather from './modules/CurrentWeather/CurrentWeather'
 import Hourly from './modules/Hourly/Hourly'
+import Daily from './modules/Daily/Daily'
 
 function App() {
   const [city, setCity] = useState('Москва')
@@ -55,6 +56,9 @@ function App() {
             currentTime={weatherData.current.dt}
             dailyWeather={weatherData.daily}
             hourlyWeather={weatherData.hourly}
+          />
+          <Daily
+            dailyWeather={weatherData.daily}
           />
         </div>
       </div>

@@ -1,0 +1,33 @@
+@import '../../variables.scss';
+
+.daily-weather {
+  margin-top: 5px;
+  background-color: $color-2;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+
+  td {
+    margin: 5px 0;
+  }
+
+  &__date {
+    color: $color-3;
+  }
+  
+  &__day {
+    margin-right: 5px;
+    
+  }
+
+  &__description {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    max-width: 200px;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}
