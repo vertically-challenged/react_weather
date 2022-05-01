@@ -3,8 +3,11 @@ import { DateFormattingFullDate, DateFormatting } from '../../Services/Formattin
 import iconsList from '../../icons/icons'
 import CapitalLetter from '../../Services/FormattingDataServices/CapitalLetter'
 import AddPlusIfNeeded from '../../Services/FormattingDataServices/AddPlusIfNeeded'
-import Button from './Button/Button'
 import './Hourly.scss'
+import Button from './Button/Button'
+import Separator from './Cards/Separator'
+import SunTime from './Cards/SunTime'
+import Weather from './Cards/Weather'
 
 const getSunTime = (dailyWeather) => {
   const sunTime = []
@@ -30,7 +33,7 @@ const dataPreparation = (
       if (DateFormatting(hourlyWeather[i + 1]?.dt) === '00:00') {
         preparingDate.push({
           type: 'separator',
-          day: DateFormattingFullDate(hourlyWeather[i + 1]?.dt),
+          ...DateFormattingFullDate(hourlyWeather[i + 1]?.dt),
         })
       }
 
@@ -69,36 +72,29 @@ function Hourly(hourlyProps) {
       {data.map((item) => {
         if (item.type === 'separator') {
           return (
-            <div className="hourly-list__separator">
-              <div className="separator__day">{item.day.day}</div>
-              <div className="separator__mouth">{item.day.mouth}</div>
-            </div>
+            <Separator
+              day={item.day}
+              mouth={item.mouth}
+            />
           )
         }
 
         if (item.event) {
           return (
-            <li className="hourly-list__item hourly-list__sunTime">
-              {item.event === 'sunrise' && <img width="50px" height="50px" src={iconsList.other.sunrise} alt="sunrise" />}
-              {item.event === 'sunset' && <img width="50px" height="50px" src={iconsList.other.sunset} alt="sunset" />}
-              <div>{item.time}</div>
-              <div>
-                {item.day}
-                {' '}
-                {item.mouth}
-              </div>
-            </li>
+            <SunTime
+              event={item.event}
+              time={item.time}
+              day={item.day}
+              mouth={item.mouth}
+            />
           )
         }
         return (
-          <li className="hourly-list__item">
-            <div className="hourly-list__time">{DateFormatting(item.dt)}</div>
-            <div>
-              <img width="50px" height="50px" src={iconsList.weather[item.weather[0].icon]} alt="icon" />
-            </div>
-            {/* <div>{CapitalLetter(item.weather[0].description)}</div> */}
-            <div className="hourly-list__temp">{AddPlusIfNeeded(Math.round(item.temp))}</div>
-          </li>
+          <Weather
+            dt={DateFormatting(item.dt)}
+            icon={iconsList.weather[item.weather[0].icon]}
+            temp={AddPlusIfNeeded(Math.round(item.temp))}
+          />
         )
       })}
     </ul>
