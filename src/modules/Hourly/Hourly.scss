@@ -1,0 +1,60 @@
+@import '../../variables.scss';
+
+.hourly-list {
+  list-style: none;
+  padding: 0;
+  display: flex; 
+  overflow: scroll;
+  max-width: 375px;
+  border-radius: 20px;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  &__item {
+    background-color: $color-2;
+    text-align: center;
+    padding: 5px 13px;
+    margin: 0 6.5px;
+    border-radius: 20px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    * {
+      padding: 2px;
+    }
+  }
+
+  &__sunTime, &__time {
+    color: $color-3;
+  }
+
+  &__temp {
+    &::after {
+      content: '°'
+    }
+  }
+
+  &__separator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 2px solid $color-1;
+    color: $color-3;
+    margin: 10px 0px;
+    margin-left: 10px;
+    padding: 20px;
+    
+    * {
+      padding: 2px 0;
+    }
+  }
+}

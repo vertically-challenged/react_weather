@@ -4,12 +4,15 @@ import './App.scss'
 import City from './modules/City/City'
 import Time from './modules/Time/Time'
 import CurrentWeather from './modules/CurrentWeather/CurrentWeather'
+import Hourly from './modules/Hourly/Hourly'
 
 function App() {
   const [city, setCity] = useState('Москва')
   const [country, setCountry] = useState('RU')
-  const [geocode, setGeocode] = useState(null)
+  const [/* geocode */, setGeocode] = useState(null)
   const [weatherData, setWeatherData] = useState(null)
+
+  // console.log(weatherData)
 
   const setData = () => {
     API.getGeocode(city, country)
@@ -36,6 +39,7 @@ function App() {
 
   return (
     <div className="App">
+      { weatherData && (
       <div className="container">
         <City
           city={city}
@@ -44,13 +48,17 @@ function App() {
           setCountry={setCountry}
           onSubmitCityHandler={onSubmitCityHandler(setGeocode, city, country)}
         />
-
-        {weatherData && <Time time={weatherData.current.dt} />}
-
-        <div className="main-bloc">
-          {weatherData && <CurrentWeather geocode={geocode} currentWeather={weatherData.current} />}
+        <Time time={weatherData.current.dt} />
+        <div className="weather-bloc">
+          <CurrentWeather currentWeather={weatherData.current} />
+          <Hourly
+            currentTime={weatherData.current.dt}
+            dailyWeather={weatherData.daily}
+            hourlyWeather={weatherData.hourly}
+          />
         </div>
       </div>
+      )}
     </div>
   )
 }
