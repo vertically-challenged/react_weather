@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DateFormattingFullDate, DateFormatting } from '../../Services/FormattingDataServices/DateFormatting'
 import iconsList from '../../icons/icons'
 import CapitalLetter from '../../Services/FormattingDataServices/CapitalLetter'
@@ -59,45 +59,57 @@ function Hourly(hourlyProps) {
     hourlyWeather,
   } = hourlyProps
 
-  const [data] = useState(dataPreparation(
+  const [data, setData] = useState(dataPreparation(
     hourlyWeather,
     currentTime,
     dailyWeather,
   ))
 
+  useEffect(() => {
+    setData(() => dataPreparation(
+      hourlyWeather,
+      currentTime,
+      dailyWeather,
+    ))
+  }, [currentTime])
+
   console.log(data)
 
   return (
-    <ul className="hourly-list">
-      {data.map((item) => {
-        if (item.type === 'separator') {
-          return (
-            <Separator
-              day={item.day}
-              mouth={item.mouth}
-            />
-          )
-        }
+    <div className="hourly-list__wrapper">
+      <Button direction="left" />
+      <ul className="hourly-list">
+        {data.map((item) => {
+          if (item.type === 'separator') {
+            return (
+              <Separator
+                day={item.day}
+                mouth={item.mouth}
+              />
+            )
+          }
 
-        if (item.event) {
+          if (item.event) {
+            return (
+              <SunTime
+                event={item.event}
+                time={item.time}
+                day={item.day}
+                mouth={item.mouth}
+              />
+            )
+          }
           return (
-            <SunTime
-              event={item.event}
-              time={item.time}
-              day={item.day}
-              mouth={item.mouth}
+            <Weather
+              dt={DateFormatting(item.dt)}
+              icon={iconsList.weather[item.weather[0].icon]}
+              temp={AddPlusIfNeeded(Math.round(item.temp))}
             />
           )
-        }
-        return (
-          <Weather
-            dt={DateFormatting(item.dt)}
-            icon={iconsList.weather[item.weather[0].icon]}
-            temp={AddPlusIfNeeded(Math.round(item.temp))}
-          />
-        )
-      })}
-    </ul>
+        })}
+      </ul>
+      <Button direction="right" />
+    </div>
   )
 }
 

@@ -1,5 +1,27 @@
 @import '../../variables.scss';
 
+.hourly-list__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hourly-list__button {
+  display: none;
+  position: absolute;
+  margin: 5px;
+  cursor: pointer;
+  opacity: .9;
+
+  &--right {
+  right: 0;
+  }
+}
+
+.hourly-list__wrapper:hover > .hourly-list__button {
+  display: block;
+}
+
 .hourly-list {
   list-style: none;
   padding: 0;
