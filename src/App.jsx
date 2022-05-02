@@ -9,7 +9,7 @@ import Daily from './modules/Daily/Daily'
 import Additionally from './modules/Additionally/Additionally'
 
 function App() {
-  const [city, setCity] = useState('Москва')
+  const [city, setCity] = useState(window.localStorage.city || 'Москва')
   const [country, setCountry] = useState('RU')
   const [/* geocode */, setGeocode] = useState(null)
   const [weatherData, setWeatherData] = useState(null)
