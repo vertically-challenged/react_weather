@@ -1,0 +1,25 @@
+@import '../../variables.scss';
+
+.additionally {
+  margin-top: 15px;
+  background-color: $color-2;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+
+  tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    padding: 3px 0;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+}

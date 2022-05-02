@@ -21,6 +21,8 @@ import sync from './png/sync.png'
 import left from './png/left.png'
 import right from './png/right.png'
 import warning from './png/warning.png'
+import uv from './png/uv.png'
+import aqi from './png/aqi.png'
 
 const weather = {
   '01d': Sun,
@@ -59,6 +61,8 @@ const other = {
   sunrise,
   sunset,
   warning,
+  uv,
+  aqi,
 }
 
 const iconsList = {

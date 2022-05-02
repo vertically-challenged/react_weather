@@ -6,12 +6,14 @@ import Time from './modules/Time/Time'
 import CurrentWeather from './modules/CurrentWeather/CurrentWeather'
 import Hourly from './modules/Hourly/Hourly'
 import Daily from './modules/Daily/Daily'
+import Additionally from './modules/Additionally/Additionally'
 
 function App() {
   const [city, setCity] = useState('Москва')
   const [country, setCountry] = useState('RU')
   const [/* geocode */, setGeocode] = useState(null)
   const [weatherData, setWeatherData] = useState(null)
+  const [AQ, setAQ] = useState(null)
 
   // console.log(weatherData)
 
@@ -26,6 +28,9 @@ function App() {
           .then((currentWeatherData) => {
             setWeatherData(() => (currentWeatherData.data))
           })
+        API.airPollution(currentGeocode).then((airPollutionData) => {
+          setAQ(() => (airPollutionData))
+        })
       })
   }
 
@@ -59,6 +64,10 @@ function App() {
           />
           <Daily
             dailyWeather={weatherData.daily}
+          />
+          <Additionally
+            AQ={AQ}
+            currentWeather={weatherData.current}
           />
         </div>
       </div>

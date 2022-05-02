@@ -23,6 +23,15 @@ class API {
       throw new Error(`API Error getWeatherData: ${error}`)
     }
   }
+
+  static airPollution = async (geocode) => {
+    try {
+      const airPollutionData = await axios(`data/2.5/air_pollution?lat=${geocode.lat}&lon=${geocode.lon}&appid=${API_KEY}&lang=ru`)
+      return airPollutionData
+    } catch (error) {
+      throw new Error(`API Error getWeatherData: ${error}`)
+    }
+  }
 }
 
 export default API
