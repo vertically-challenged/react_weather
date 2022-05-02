@@ -35,14 +35,14 @@ function App() {
   }
 
   useEffect(() => {
-    setData()
     if (window.localStorage.city) setCity(window.localStorage.city)
+    setData()
   }, [])
 
   const onSubmitCityHandler = () => (event) => {
     event.preventDefault()
-    setData()
     window.localStorage.setItem('city', city)
+    setData()
   }
 
   return (
