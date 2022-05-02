@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App">
-      { weatherData && (
+      { weatherData && AQ && (
       <div className="container">
         <City
           city={city}
