@@ -11,11 +11,11 @@
   @media (min-width: $phone) {
     border-radius: 20px;
     padding: 10px;
-    order: 1;
   }
 
   @media (min-width: $laptop) {
     margin-top: 10px;
+    order: 1;
   }
 
   td {
