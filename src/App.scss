@@ -13,3 +13,18 @@
     align-items: center;
   }
 }
+
+footer {
+  // border: solid 2px red;
+  margin-top: 40px;
+  text-align: center;
+
+  a {
+    text-decoration: none;
+    color: $color-3;
+
+    &:hover {
+      color: $color-5;
+    }
+  }
+}

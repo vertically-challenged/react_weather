@@ -74,6 +74,9 @@ function App() {
         </div>
       </div>
       )}
+      <footer>
+        <a href="https://github.com/vertically-challenged/react_weather">GitHub</a>
+      </footer>
     </div>
   )
 }
