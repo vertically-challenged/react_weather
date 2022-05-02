@@ -1,2 +1,15 @@
 @import './variables.scss';
 @import './scaffolding.scss';
+
+.weather-bloc {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $laptop) {
+    max-height: 700px;
+    max-width: 900px;
+    width: 800px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

@@ -3,9 +3,18 @@
 .additionally {
   margin-top: 15px;
   background-color: $color-2;
-  padding: 10px;
-  border-radius: 20px;
   width: 100%;
+  padding: 10px 0;
+  max-width: 375px;
+
+  @media (min-width: $phone) {
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  @media (min-width: $laptop) {
+    margin-top: 5px;
+  }
 
   tr {
     display: flex;

@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 375px;
 }
 
 .hourly-list__button {
@@ -33,7 +34,10 @@
   display: flex; 
   overflow: scroll;
   max-width: 375px;
-  border-radius: 20px;
+
+  @media (min-width: $phone) {
+    border-radius: 20px;
+  }
 
   &::-webkit-scrollbar {
     width: 0;

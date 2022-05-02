@@ -4,8 +4,19 @@
   margin-top: 5px;
   background-color: $color-2;
   padding: 10px;
-  border-radius: 20px;
   width: 100%;
+  padding: 10px 0;
+  max-width: 375px;
+
+  @media (min-width: $phone) {
+    border-radius: 20px;
+    padding: 10px;
+    order: 1;
+  }
+
+  @media (min-width: $laptop) {
+    margin-top: 10px;
+  }
 
   td {
     margin: 5px 0;
